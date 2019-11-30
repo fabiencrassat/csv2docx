@@ -27,9 +27,9 @@
     "init:tslint": "./node_modules/.bin/tslint --init",
     "lint": "./node_modules/.bin/tslint --project .",
     "test": "yarn test:unit",
-    "test:all": "yarn test:unit & yarn test:e2e",
+    "test:all": "yarn test:coverage && yarn test:e2e",
     "test:coverage": "yarn test:unit --coverage",
-    "test:e2e": "yarn compile & jest ./e2e/",
+    "test:e2e": "yarn compile && jest ./e2e/",
     "test:unit": "jest ./src/",
     "test:watch": "yarn test:unit --watch"
   }
