@@ -1,0 +1,36 @@
+{
+  "name": "csv2docx",
+  "version": "0.1.0",
+  "description": "Convert csv with docx template in js",
+  "main": "./src/index.ts",
+  "author": "Fabien Crassat <fabien@crassat.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@types/commander": "^2.12.2",
+    "@types/node": "^12.12.13",
+    "commander": "^4.0.1",
+    "csv-parser": "^2.3.2",
+    "docx-templates": "^3.1.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.2.0",
+    "tslint": "^5.20.1",
+    "tslint-config-airbnb": "^5.11.2",
+    "typescript": "^3.7.2"
+  },
+  "scripts": {
+    "compile": "./node_modules/.bin/tsc",
+    "compile:watch": "yarn compile -w",
+    "init:tsc": "yarn compile --init",
+    "init:tslint": "./node_modules/.bin/tslint --init",
+    "lint": "./node_modules/.bin/tslint --project .",
+    "test": "yarn test:unit",
+    "test:all": "yarn test:unit & yarn test:e2e",
+    "test:coverage": "yarn test:unit --coverage",
+    "test:e2e": "yarn compile & jest ./e2e/",
+    "test:unit": "jest ./src/",
+    "test:watch": "yarn test:unit --watch"
+  }
+}
