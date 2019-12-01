@@ -23,6 +23,7 @@ jobs:
       run: |
         yarn install
         yarn compile
+        yarn lint
         yarn test:all
       env:
         CI: true
