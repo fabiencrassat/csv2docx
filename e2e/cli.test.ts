@@ -21,16 +21,6 @@ function cli(args: string[]): Promise<{
   });
 }
 
-const helpMessage: string = `Usage: csv2docx [options] [command]
-
-Options:
-  -V, --version  output the version number
-  -h, --help     output usage information
-
-Commands:
-  import <file>
-`;
-
 const expectResult = (
   result: { code: number, error: ExecException | null, stdout: string, stderr: string },
   stdout: string): void => {
@@ -41,6 +31,16 @@ const expectResult = (
 };
 
 describe('help information from cli command', () => {
+  const helpMessage: string = `Usage: csv2docx [options] <file> <template> <report>
+
+Import csv <file> against Word docx <template> to create Word docx <report>
+Example: csv2docx e2e/sample.csv templates/myTemplate.docx reports/myReport.docx
+
+Options:
+  -V, --version  output the version number
+  -h, --help     output usage information
+`;
+
   it('should be without argument', async () => {
     const result = await cli([]);
     expectResult(result, helpMessage);
@@ -55,15 +55,19 @@ describe('help information from cli command', () => {
   });
 });
 
-const runMessage: string = `Importing e2e/sample.csv file
+describe('cli command', () => {
+  const runMessage: string = `Importing e2e/sample.csv file
 CSV file successfully processed
 Creating docx report...
 Docx report created!
 `;
 
-describe('cli command', () => {
-  it('should import sample csv', async () => {
-    const result = await cli(['import', 'e2e/sample.csv']);
+  it('should run', async () => {
+    const result = await cli([
+      'e2e/sample.csv',
+      'templates/myTemplate.docx',
+      'reports/myReport.docx',
+    ]);
     expectResult(result, runMessage);
   });
 });

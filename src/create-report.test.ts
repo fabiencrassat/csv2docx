@@ -7,16 +7,15 @@ jest.mock('./log');
 
 describe('create-report', () => {
   it('should run', () => {
-    createReport([]);
+    createReport([], 'pathToTemplate', 'pathToOutput');
     expect(log).toHaveBeenCalledTimes(2);
     expect(log).toHaveBeenNthCalledWith(1, 'Creating docx report...');
     expect(log).toHaveBeenNthCalledWith(2, 'Docx report created!');
     expect(docxTemplates).toHaveBeenCalledTimes(1);
     expect(docxTemplates).toHaveBeenCalledWith({
-      cmdDelimiter: ['{', '}'],
       data: { data: [] },
-      output: 'reports/myReport.docx',
-      template: 'templates/myTemplate.docx',
+      output: 'pathToOutput',
+      template: 'pathToTemplate',
     });
   });
 });

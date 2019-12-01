@@ -1,13 +1,17 @@
 import docxTemplates from 'docx-templates';
 import { log } from './log';
 
-export default async function createReport(data: JSON[]): Promise<void> {
+export default async function createReport(
+  data: JSON[],
+  template: string,
+  output: string,
+): Promise<void> {
   log('Creating docx report...');
   docxTemplates({
-    cmdDelimiter: ['{', '}'],
+    output,
+    template,
+    // tslint:disable-next-line: object-literal-sort-keys
     data: { data },
-    output: 'reports/myReport.docx',
-    template: 'templates/myTemplate.docx',
   });
   log('Docx report created!');
 }
